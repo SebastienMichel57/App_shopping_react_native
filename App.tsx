@@ -54,6 +54,13 @@ export default function App() {
     }
   };
 
+  // Delete all articles
+  const deleteAll = () => {
+    const newItems = [];
+    setItems(newItems);
+    saveItems(newItems); // Save after deleting
+  };
+
   // Delete an article
   const removeItem = (id: string) => {
     const newItems = items.filter((item) => item.id !== id);
@@ -87,6 +94,9 @@ export default function App() {
           </View>
         )}
       />
+        <TouchableOpacity style={styles.deleteAllButton} onPress={deleteAll}>
+          <Text style={styles.addButtonText}>Supprimer tous les articles</Text>
+        </TouchableOpacity>
     </View>
   );
 }
@@ -95,7 +105,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: "#f8f8f8",
+    backgroundColor: "#f0f0f0",
   },
   title: {
     fontSize: 24,
@@ -123,6 +133,13 @@ const styles = StyleSheet.create({
   addButtonText: {
     color: "#fff",
     fontWeight: "bold",
+  },
+  deleteAllButton: {
+    backgroundColor: "red",
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 5,
+    alignItems: "center",
   },
   item: {
     flexDirection: "row",
