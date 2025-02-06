@@ -1,4 +1,6 @@
-Features version 1.0
+Features version 1.0.
+
+Create a branch for each version.
 
 The user can :
 
@@ -9,3 +11,4 @@ The user can :
 [] delete an item
 
 [] delete a shopping list
+
