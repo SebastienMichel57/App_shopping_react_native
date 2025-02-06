@@ -43,29 +43,41 @@ export default function App() {
     }
   };
 
-  // Add a new article
-  const addItem = () => {
+  const addItem = async () => {
     if (input.trim()) {
-      const newItem = { id: Date.now().toString(), text: input };
-      const newItems = [...items, newItem];
-      setItems(newItems);
-      saveItems(newItems); // Save after adding
-      setInput("");
+      try {
+        const newItem: Item = { id: Date.now().toString(), text: input };
+        if (items.some(item => item.text.toLowerCase() === newItem.text.toLowerCase())) {
+          alert("Cet article est déjà dans la liste !");
+          return;
+        }
+        const newItems = [...items, newItem];
+        setItems(newItems);
+        await saveItems(newItems); // Save after add
+        setInput(""); // Reset the input field
+      } catch (error) {
+        console.error("Erreur lors de l'ajout de l'article :", error);
+      }
     }
   };
 
-  // Delete all articles
-  const deleteAll = () => {
-    const newItems = [];
-    setItems(newItems);
-    saveItems(newItems); // Save after deleting
+  const deleteAll = async () => {
+    try {
+      await AsyncStorage.removeItem("shopping_list"); // Delete the list from AsyncStorage
+      setItems([]); // Empty the list
+    } catch (error) {
+      console.error("Erreur lors de la suppression de la liste :", error);
+    }
   };
 
-  // Delete an article
-  const removeItem = (id: string) => {
-    const newItems = items.filter((item) => item.id !== id);
-    setItems(newItems);
-    saveItems(newItems); // Save after deleting
+  const removeItem = async (id: string) => {
+    try {
+      const newItems = items.filter((item) => item.id !== id);
+      setItems(newItems);
+      await saveItems(newItems); // Save after delete
+    } catch (error) {
+      console.error("Erreur lors de la suppression de l'article :", error);
+    }
   };
 
   return (
