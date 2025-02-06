@@ -1,12 +1,15 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "lib": ["dom", "esnext"],
+    "lib": [
+      "dom",
+      "esnext"
+    ],
     "jsx": "react",
     "moduleResolution": "node",
     "strict": true,
     "skipLibCheck": true,
     "esModuleInterop": true
-  }
+  },
+  "extends": "expo/tsconfig.base"
 }
-

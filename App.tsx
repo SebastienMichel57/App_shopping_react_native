@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -7,28 +7,58 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
+// Interface for list items
 interface Item {
   id: string;
   text: string;
 }
 
 export default function App() {
-  const [items, setItems] = useState<Item[]>([]); // Liste typée
-  const [input, setInput] = useState<string>(""); // Texte du champ
+  const [items, setItems] = useState<Item[]>([]); // List of articles
+  const [input, setInput] = useState<string>(""); // User input field
 
+  // Load data from AsyncStorage when the app starts
+  useEffect(() => {
+    const loadItems = async () => {
+      try {
+        const savedItems = await AsyncStorage.getItem("shopping_list");
+        if (savedItems) {
+          setItems(JSON.parse(savedItems));
+        }
+      } catch (error) {
+        console.error("Erreur lors du chargement des articles :", error);
+      }
+    };
+    loadItems();
+  }, []);
+
+  // Save data in asyncStorage
+  const saveItems = async (newItems: Item[]) => {
+    try {
+      await AsyncStorage.setItem("shopping_list", JSON.stringify(newItems));
+    } catch (error) {
+      console.error("Erreur lors de la sauvegarde des articles :", error);
+    }
+  };
+
+  // Add a new article
   const addItem = () => {
     if (input.trim()) {
-      setItems((prevItems) => [
-        ...prevItems,
-        { id: Date.now().toString(), text: input },
-      ]);
+      const newItem = { id: Date.now().toString(), text: input };
+      const newItems = [...items, newItem];
+      setItems(newItems);
+      saveItems(newItems); // Save after adding
       setInput("");
     }
   };
 
+  // Delete an article
   const removeItem = (id: string) => {
-    setItems((prevItems) => prevItems.filter((item) => item.id !== id));
+    const newItems = items.filter((item) => item.id !== id);
+    setItems(newItems);
+    saveItems(newItems); // Save after deleting
   };
 
   return (
