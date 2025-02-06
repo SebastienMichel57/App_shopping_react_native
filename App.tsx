@@ -18,6 +18,8 @@ interface Item {
 export default function App() {
   const [items, setItems] = useState<Item[]>([]); // List of articles
   const [input, setInput] = useState<string>(""); // User input field
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null); // Selected category
+
 
   // Load data from AsyncStorage when the app starts
   useEffect(() => {
@@ -61,6 +63,23 @@ export default function App() {
     }
   };
 
+  const addItemFromCategory = async (article: string) => {
+    try {
+      const newItem: Item = { id: Date.now().toString(), text: article };
+  
+      if (items.some((item) => item.text.toLowerCase() === newItem.text.toLowerCase())) {
+        return; // Évite les doublons
+      }
+  
+      const newItems = [...items, newItem];
+      setItems(newItems);
+      await saveItems(newItems);
+    } catch (error) {
+      console.error("Erreur lors de l'ajout de l'article :", error);
+    }
+  };
+  
+
   const deleteAll = async () => {
     try {
       await AsyncStorage.removeItem("shopping_list"); // Delete the list from AsyncStorage
@@ -80,6 +99,98 @@ export default function App() {
     }
   };
 
+  const categories = [
+    {
+      name: "Produits laitiers",
+      items: ["Lait", "Beurre", "Yaourt","Chantilly","Crème fraîche","Fromage blanc","Lait fermenté","Lait concentré"],
+    },
+    {
+      name: "Œufs",
+      items: ["Œuf", "Oeufs de caille", "Oeufs de cane",],
+    },
+    {
+      name: "Fromages",
+      items: ["Gruyère", "Camembert", "Chèvre", "Roquefort","Mozzarella","Parmesan"],
+    },
+    {
+      name: "Viandes",
+      items: ["Poulet", "Boeuf", "Porc", "Agneau","Veau","Canard","Dinde","Lapin","Gibier"],
+    },
+    {
+      name: "Poissons",
+      items: ["Saumon", "Cabillaud", "Sardines", "Maquereau","Thon","Dorade","Bar","Truite","Carpe","Anguille"],
+    },
+    {
+      name: "Fruits",
+      items: ["Pomme", "Banane", "Poire", "Orange","Citron","Fraise","Framboise","Cerise","Pêche","Abricot","Kiwi","Ananas","Melon","Pastèque"],
+    },
+    {
+      name: "Légumes",
+      items: ["Carotte", "Courgette", "Tomate", "Poivron","Aubergine","Concombre","Salade","Chou","Céleri","Radis"],
+    },
+    {
+      name: "Féculents",
+      items: ["Pâtes", "Riz", "Semoule", "Quinoa","Boulgour","Blé","Lentilles","Pois chiches","Haricots rouges"],
+    },
+    {
+      name: "Conserves",
+      items: ["Haricots verts", "Petits pois", "Maïs", "Thon","Sardines","Miettes de crabe","Ravioli","Pâté"],
+    },
+    {
+      name: "Surgelés",
+      items: ["Pizza", "Frites", "Nuggets", "Légumes","Fruits","Poisson","Viande","Glace","Sorbet",],
+    },
+    {
+      name: "Boissons",
+      items: ["Eau","Eau gazeuse","Jus de fruit", "Soda", "Lait d'amande","Lait de soja","Lait de coco","yaourt à boire"],
+    },
+    {
+      name: "Alcool",
+      items: ["Vin", "Bière", "Whisky", "Vodka","Rhum","Gin","Tequila","Champagne","Martini","Pastis","Ricard"],
+    },
+    {
+      name: "Hygiène",
+      items: ["Dentifrice", "Shampoing", "Gel douche", "Mouchoirs","Coton-tige","Rasoir","Déodorant","Papier toilette","Serviette hygiénique","Tampon"],
+    },
+    {
+      name: "Bébé",
+      items: ["Couches", "Lingettes", "Biberon", "Lait infantile","Petit pot","Compote","Yaourt bébé","Petit suisse","Céréales bébé"],
+    },
+    {
+      name: "Ménage",
+      items: ["Lessive", "Liquide vaisselle", "Éponge", "Papier absorbant","Nettoyant multi-usage","Désinfectant","Détartrant","Désodorisant","Sacs poubelle","Gants"],
+    },
+    {
+      name: "Outils",
+      items: ["Tournevis", "Marteau", "Pince", "Scie","Clé","Perceuse","Pinceau","Cutter","Mètre","Niveau à bulle"],
+    },
+    {
+      name: "Papeterie",
+      items: ["Stylo", "Cahier", "Feuilles", "Crayon","Gomme","Taille-crayon","Ciseaux","Colle","Agrafeuse","Ruban adhésif"],
+    },
+    {
+      name: "Epicerie salée",
+      items: ["Sel", "Poivre", "Huile", "Vinaigre","Moutarde","Ketchup","Mayonnaise","Sauce soja","Sauce tomate","Sauce piquante","Sauce barbecue"],
+    },
+    {
+      name: "Epicerie sucrée",
+      items: ["Sucre", "Sucre vanillé", "Farine", "Levure","Chocolat","Cacao","Confiture","Nutella","Miel","Sirop d'érable","Pâte à tartiner"],
+    },
+    {
+      name: "Petit-déjeuner",
+      items: ["Céréales", "Pain", "Beurre", "Confiture","Pâte à tartiner","Miel","Yaourt","Compote","Jus de fruit","Lait"],
+    },
+    {
+      name: "Apéritif",
+      items: ["Chips", "Cacahuètes", "Olives", "Saucisson","Fromage","Biscuits apéritif","Crudités","Charcuterie"],
+    },
+    {
+      name: "Dessert",
+      items: ["Gâteau", "Tarte", "Flan", "Crème dessert","Mousse","Compote","Yaourt","Glace","Sorbet","Fruits"],
+    },
+  ]
+  
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Ma Liste de Courses</Text>
@@ -94,6 +205,44 @@ export default function App() {
           <Text style={styles.addButtonText}>Ajouter</Text>
         </TouchableOpacity>
       </View>
+      <View style={styles.categoryContainer}>
+          <Text style={styles.categoryTitle}>Catégories</Text>
+          <FlatList
+            data={categories}
+            keyExtractor={(item) => item.name}
+            horizontal
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                style={[
+                  styles.categoryButton,
+                  selectedCategory === item.name && styles.selectedCategoryButton,
+                ]}
+                onPress={() =>
+                  setSelectedCategory(selectedCategory === item.name ? null : item.name)
+                }
+              >
+                <Text style={styles.categoryButtonText}>{item.name}</Text>
+              </TouchableOpacity>
+            )}
+          />
+        </View>
+              {selectedCategory && (
+        <View style={styles.articleContainer}>
+          <Text style={styles.articleTitle}>Articles disponibles : Ajouter à la liste</Text>
+          <FlatList
+            data={categories.find((cat) => cat.name === selectedCategory)?.items || []}
+            keyExtractor={(item) => item}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                style={styles.articleButton}
+                onPress={() => addItemFromCategory(item)}
+              >
+                <Text style={styles.articleButtonText}>{item}</Text>
+              </TouchableOpacity>
+            )}
+          />
+        </View>
+      )}
       <FlatList
         data={items}
         keyExtractor={(item) => item.id}
@@ -117,33 +266,42 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: "#f0f0f0",
+    backgroundColor: "#f5f5f5", 
   },
   title: {
-    fontSize: 24,
+    fontSize: 26,
     fontWeight: "bold",
+    textAlign: "center",
+    color: "#333",
     marginBottom: 20,
   },
   inputContainer: {
     flexDirection: "row",
-    marginBottom: 20,
+    alignItems: "center",
+    backgroundColor: "#fff",
+    borderRadius: 8,
+    padding: 10,
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+    marginBottom: 10,
   },
   input: {
     flex: 1,
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 5,
-    padding: 10,
-    marginRight: 10,
+    fontSize: 16,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
   },
   addButton: {
     backgroundColor: "#007bff",
-    paddingHorizontal: 20,
     paddingVertical: 10,
-    borderRadius: 5,
+    paddingHorizontal: 16,
+    borderRadius: 8,
   },
   addButtonText: {
     color: "#fff",
+    fontSize: 16,
     fontWeight: "bold",
   },
   deleteAllButton: {
@@ -170,4 +328,60 @@ const styles = StyleSheet.create({
     color: "red",
     fontWeight: "bold",
   },
+  categoryContainer: {
+    marginBottom: 15,
+  },
+  categoryTitle: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#333",
+    marginBottom: 10,
+  },
+  categoryButton: {
+    backgroundColor: "#4CAF50",
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderRadius: 8,
+    marginRight: 10,
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  selectedCategoryButton: {
+    backgroundColor: "#0B6010",
+  },
+  categoryButtonText: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 16,
+  },
+  articleContainer: {
+  backgroundColor: "#fff",
+  borderRadius: 8,
+  padding: 10,
+  marginBottom: 10,
+  shadowColor: "#000",
+  shadowOpacity: 0.1,
+  shadowRadius: 4,
+  elevation: 2,
+},
+articleTitle: {
+  fontSize: 18,
+  fontWeight: "bold",
+  marginBottom: 5,
+  color: "#333",
+},
+articleButton: {
+  backgroundColor: "#eee",
+  padding: 10,
+  borderRadius: 5,
+  marginBottom: 5,
+  flexDirection: "row",
+  justifyContent: "space-between",
+  alignItems: "center",
+},
+articleButtonText: {
+  fontSize: 16,
+},
 });
