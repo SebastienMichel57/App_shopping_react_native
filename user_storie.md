@@ -4,11 +4,13 @@ Create a branch for each version.
 
 The user can :
 
-[] create a shopping list 
+[x] create a shopping list 
 
-[] add items
+[x] add items
 
-[] delete an item
+[x] delete an item
 
-[] delete a shopping list
+[x] delete a shopping list
+
+[x] items categories
 

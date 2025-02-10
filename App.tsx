@@ -63,12 +63,13 @@ export default function App() {
     }
   };
 
-  const addItemFromCategory = async (article: string) => {
+  const addItemFromCategory = async (article: string): Promise<void> => {
     try {
       const newItem: Item = { id: Date.now().toString(), text: article };
   
       if (items.some((item) => item.text.toLowerCase() === newItem.text.toLowerCase())) {
-        return; // Évite les doublons
+        alert("Cet article est déjà dans la liste !");
+        return; // Do not add the same item twice
       }
   
       const newItems = [...items, newItem];
@@ -122,7 +123,7 @@ export default function App() {
     },
     {
       name: "Fruits",
-      items: ["Pomme", "Banane", "Poire", "Orange","Citron","Fraise","Framboise","Cerise","Pêche","Abricot","Kiwi","Ananas","Melon","Pastèque"],
+      items: ["Pomme", "Banane", "Poire", "Orange","Citron","Fraise","Framboise","Cerise","Pêche","Abricot","Kiwi","Ananas","Melon","Pastèque","Mangue","Papaye","Grenade","Raisin","Prune","Mirabelle","Noix","Noisette","Amande","Pistache","Châtaigne","Coco","Avocat","Fruit de la passion","Goyave","Kaki","Litchi","Mûre","Myrtille","Nectarine","Pamplemousse","Rhubarbe","Cassis","Groseille","Mûre","Myrtille","Pruneau","Carambole","Kumquat","Physalis","Pitaya","Pomme cannelle","Pomme de terre","Pomme grenade","Pomme reinette","Pomme rose","Pomme golden","Pomme granny","Pomme pink lady","Pomme royal gala","Pomme fuji","Pomme jazz","Pomme chantecler","Pomme opal","Pomme elstar","Pomme boskoop","Pomme jonagold","Pomme melrose","Pomme rubinette","Pomme gala","Pomme idared","Pomme pink kiss","Pomme envy","Pomme kanzi","Pomme rubens","Pomme tentation","Pomme jazz","Pomme chantecler","Pomme opal","Pomme elstar","Pomme boskoop","Pomme jonagold","Pomme melrose","Pomme rubinette","Pomme gala","Pomme idared","Pomme pink kiss","Pomme envy","Pomme kanzi","Pomme rubens","Pomme tentation","Pomme jazz","Pomme chantecler","Pomme opal","Pomme elstar","Pomme boskoop","Pomme jonagold","Pomme melrose","Pomme rubinette","Pomme gala","Pomme idared","Pomme pink kiss",],
     },
     {
       name: "Légumes",
@@ -231,14 +232,16 @@ export default function App() {
           <Text style={styles.articleTitle}>Articles disponibles : Ajouter à la liste</Text>
           <FlatList
             data={categories.find((cat) => cat.name === selectedCategory)?.items || []}
-            keyExtractor={(item) => item}
-            renderItem={({ item }) => (
+            keyExtractor={(item: string, index: number) => `${item}-${index}`}  
+            renderItem={({ item }: { item: string }) => (
               <TouchableOpacity
                 style={styles.articleButton}
                 onPress={() => addItemFromCategory(item)}
               >
                 <Text style={styles.articleButtonText}>{item}</Text>
+                <Text>➕   Ajouter</Text>
               </TouchableOpacity>
+              
             )}
           />
         </View>
@@ -274,6 +277,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#333",
     marginBottom: 20,
+    marginTop: 20,
   },
   inputContainer: {
     flexDirection: "row",
@@ -365,6 +369,7 @@ const styles = StyleSheet.create({
   shadowOpacity: 0.1,
   shadowRadius: 4,
   elevation: 2,
+  height: 415,
 },
 articleTitle: {
   fontSize: 18,
