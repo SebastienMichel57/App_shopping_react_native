@@ -4,7 +4,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import Header from "./components/Header";
 import InputForm from "./components/InputForm";
 import CategoryList from "./components/CategoryList";
-import ItemList from "./components/ItemList";
 import ToastMessage from "./components/ToastMessage";
 import DeleteAllList from "./components/DeleteAllList";
 import RemoveItem from "./components/RemoveItem";

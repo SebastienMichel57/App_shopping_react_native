@@ -37,6 +37,8 @@ const CategoryContainer = styled.View`
   padding: 10px;
   min-height: 300px;
   width: 100%;
+  border: 1px solid #ccc;
+  margin-bottom: 16px;
 `;
 
 const CategoryTitle = styled.Text`
