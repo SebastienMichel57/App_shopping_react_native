@@ -6,8 +6,9 @@ import InputForm from "./components/InputForm";
 import CategoryList from "./components/CategoryList";
 import ItemList from "./components/ItemList";
 import ToastMessage from "./components/ToastMessage";
-import DeleteAllList from "./components/deleteAllList";
+import DeleteAllList from "./components/DeleteAllList";
 import RemoveItem from "./components/RemoveItem";
+import AvailableItemsList from "./components/AvailableItemsList";
 
 // Item interface
 interface Item {
@@ -19,24 +20,6 @@ const AppContainer = styled.View`
   flex: 1;
   background-color: #f5f5f5;
   padding: 16px;
-`;
-
-const CategoryContainer = styled.View`
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 16px;
-  shadow-color: #000;
-  shadow-opacity: 0.1;
-  shadow-radius: 4px;
-  elevation: 3;
-`;
-
-const CategoryTitle = styled.Text`
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 8px;
 `;
 
 export default function App() {
@@ -75,13 +58,14 @@ export default function App() {
     if (input.trim()) {
       const newItem: Item = { id: Date.now().toString(), text: input };
       if (items.some((item) => item.text.toLowerCase() === newItem.text.toLowerCase())) {
-        alert("Cet article est déjà dans la liste !");
+        setInput(""); // Clear input
+        showToastMessage("Cet article est déjà dans la liste !");
         return;
       }
       const newItems = [...items, newItem];
       setItems(newItems);
       await saveItems(newItems);
-      setInput("");
+      setInput(""); 
       showToastMessage("Article ajouté !");
     }
   };
@@ -90,6 +74,7 @@ export default function App() {
   const addItemFromCategory = async (article: string) => {
     const newItem: Item = { id: Date.now().toString(), text: article };
     if (!items.some((item) => item.text.toLowerCase() === newItem.text.toLowerCase())) {
+      showToastMessage("Cet article est déjà dans la liste !");
       const newItems = [...items, newItem];
       setItems(newItems);
       await saveItems(newItems);
@@ -142,16 +127,11 @@ export default function App() {
         setSelectedCategory={setSelectedCategory}
       />
       {selectedCategory && (
-        <CategoryContainer>
-          <CategoryTitle>Articles disponibles :</CategoryTitle>
-          <ItemList
-            items={categories.find((cat) => cat.name === selectedCategory)?.items.map((item) => ({
-              id: item,
-              text: item,
-            })) || []}
-            addItemFromCategory={addItemFromCategory}
-          />
-        </CategoryContainer>
+        <AvailableItemsList 
+        selectedCategory={selectedCategory}
+        categories={categories}
+        addItemFromCategory={addItemFromCategory}
+      />
       )}
       <RemoveItem items={items} removeItemFromCategory={removeItem} />
       <ToastMessage message={toastMessage} visible={toastVisible} />

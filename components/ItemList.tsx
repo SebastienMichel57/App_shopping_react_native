@@ -37,6 +37,10 @@ const ItemList: React.FC<ItemListProps> = ({ items, addItemFromCategory }) => {
           )}
         </ItemContainer>
       )}
+      style={{ flex: 1 }}
+      scrollEnabled={true} 
+      keyboardShouldPersistTaps="handled"
+      contentContainerStyle={{ flexGrow: 1 }} 
     />
   );
 };
@@ -46,17 +50,16 @@ export default ItemList;
 const ItemContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  padding: 10px;
+  padding: 10px 5px;
   background-color: #fff;
   border-bottom-width: 1px;
   border-bottom-color: #ccc;
   border-radius: 5px;
-  margin-bottom: 10px;
-  
-`;
+  `;
 
 const ItemText = styled.Text`
   font-size: 18px;
+  padding: 10px 5px;
 `;
 
 
