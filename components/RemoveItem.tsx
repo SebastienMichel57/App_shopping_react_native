@@ -42,13 +42,14 @@ margin-bottom: 10px;
 
 const ItemText = styled.Text`
 font-size: 16px;
-padding: 15px 10px;
+padding: 18px 10px;
 font-weight: bold;
+
 `;
 
 const RemoveItemListButton = styled.TouchableOpacity`
   background-color: #f44336;
-  padding: 5px 15px;
+  padding: 10px 15px;
   border-radius: 8px;
   margin-top: 10px;
   margin-bottom: 10px;

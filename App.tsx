@@ -72,13 +72,17 @@ export default function App() {
   // Add an item from a category
   const addItemFromCategory = async (article: string) => {
     const newItem: Item = { id: Date.now().toString(), text: article };
-    if (!items.some((item) => item.text.toLowerCase() === newItem.text.toLowerCase())) {
+  
+    if (items.some((item) => item.text.toLowerCase() === newItem.text.toLowerCase())) {
       showToastMessage("Cet article est déjà dans la liste !");
-      const newItems = [...items, newItem];
-      setItems(newItems);
-      await saveItems(newItems);
-      showToastMessage("Article ajouté !");
+      return; 
     }
+  
+    const newItems = [...items, newItem];
+    setItems(newItems);
+    await saveItems(newItems);
+  
+    showToastMessage("Article ajouté !");
   };
 
   // Delete an item

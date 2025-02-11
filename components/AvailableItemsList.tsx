@@ -1,7 +1,6 @@
 import React from "react";
-import { FlatList } from "react-native";
 import styled from "styled-components/native";
-import ItemList from "./ItemList"; // Assure-toi que ItemList est bien créé
+import ItemList from "./ItemList"; 
 
 interface AvailableItemsListProps {
   selectedCategory: string | null;
