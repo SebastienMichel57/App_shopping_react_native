@@ -9,6 +9,7 @@ import DeleteAllList from "./components/DeleteAllList";
 import RemoveItem from "./components/RemoveItem";
 import AvailableItemsList from "./components/AvailableItemsList";
 
+
 // Item interface
 interface Item {
   id: string;
@@ -52,22 +53,33 @@ export default function App() {
     }
   };
 
-  // Add an item
   const addItem = async () => {
-    if (input.trim()) {
-      const newItem: Item = { id: Date.now().toString(), text: input };
-      if (items.some((item) => item.text.toLowerCase() === newItem.text.toLowerCase())) {
-        setInput(""); // Clear input
+    if (!input.trim()) return; // Vérifie si l'input est vide
+    
+    const newItem: Item = { id: Date.now().toString(), text: input };
+  
+    if (items.some((item) => item.text.toLowerCase() === newItem.text.toLowerCase())) {
+      setTimeout(() => {
         showToastMessage("Cet article est déjà dans la liste !");
-        return;
-      }
+      }, 100);
+    } else {
       const newItems = [...items, newItem];
       setItems(newItems);
-      await saveItems(newItems);
-      setInput(""); 
-      showToastMessage("Article ajouté !");
+      
+      try {
+        await saveItems(newItems);
+        setTimeout(() => {
+          showToastMessage("Article ajouté !");
+        }, 100);
+      } catch (error) {
+        console.error("Erreur lors de la sauvegarde des articles :", error);
+        showToastMessage("Une erreur est survenue !");
+      }
     }
+  
+    setInput(""); // Réinitialiser le champ après toutes les vérifications
   };
+  
 
   // Add an item from a category
   const addItemFromCategory = async (article: string) => {
@@ -81,7 +93,6 @@ export default function App() {
     const newItems = [...items, newItem];
     setItems(newItems);
     await saveItems(newItems);
-  
     showToastMessage("Article ajouté !");
   };
 
@@ -103,7 +114,10 @@ export default function App() {
   const showToastMessage = (message: string) => {
     setToastMessage(message);
     setToastVisible(true);
-    setTimeout(() => setToastVisible(false), 2000);
+    setTimeout(() => {
+      setToastVisible(false);
+    }, 900);
+
   };
 
   const categories = [
@@ -124,6 +138,7 @@ export default function App() {
     <AppContainer>
       <Header title="My Shopping List" />
       <InputForm input={input} setInput={setInput} addItem={addItem} />
+      <ToastMessage message={toastMessage} visible={toastVisible} />
       <CategoryList
         categories={categories}
         selectedCategory={selectedCategory}
@@ -134,10 +149,9 @@ export default function App() {
         selectedCategory={selectedCategory}
         categories={categories}
         addItemFromCategory={addItemFromCategory}
-      />
+        />
       )}
       <RemoveItem items={items} removeItemFromCategory={removeItem} />
-      <ToastMessage message={toastMessage} visible={toastVisible} />
       <DeleteAllList deleteAllList={deleteAll} />
     </AppContainer>
   );

@@ -12,6 +12,7 @@ const InputContainer = styled.View`
   shadow-radius: 4px;
   elevation: 3;
   margin-top: 10px;
+  position: fixed;
 `;
 
 const TextInput = styled.TextInput`

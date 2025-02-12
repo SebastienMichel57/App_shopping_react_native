@@ -19,14 +19,11 @@ const ToastMessage: React.FC<ToastMessageProps> = ({ message, visible }) => {
 export default ToastMessage;
 
 const ToastContainer = styled.View`
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  right: 20px;
+  position: fixed;
   background-color: rgba(0, 0, 0, 0.7);
-  padding: 10px;
   border-radius: 8px;
   align-items: center;
+  padding: 5px;
 `;
 
 const ToastText = styled.Text`

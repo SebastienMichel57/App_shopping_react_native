@@ -43,7 +43,6 @@ const CategoryButton = styled.TouchableOpacity<{ selected: boolean }>`
   padding: 15px;
   border-radius: 8px;
   margin-right: 10px;
-  margin-top: 10px;
   height: 50px;
 `;
 
