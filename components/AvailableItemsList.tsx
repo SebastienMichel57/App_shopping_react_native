@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
-import ItemList from "./ItemList"; 
+import ItemList from "./ItemList";
 
 interface AvailableItemsListProps {
   selectedCategory: string | null;
@@ -8,10 +8,10 @@ interface AvailableItemsListProps {
   addItemFromCategory: (item: string) => Promise<void>;
 }
 
-const AvailableItemsList: React.FC<AvailableItemsListProps> = ({ 
-  selectedCategory, 
-  categories, 
-  addItemFromCategory 
+const AvailableItemsList: React.FC<AvailableItemsListProps> = ({
+  selectedCategory,
+  categories,
+  addItemFromCategory
 }) => {
   if (!selectedCategory) return null;
 
@@ -19,15 +19,17 @@ const AvailableItemsList: React.FC<AvailableItemsListProps> = ({
     <CategoryContainer>
       <CategoryTitle>Articles disponibles :</CategoryTitle>
       <ItemList
-        items={categories.find((cat) => cat.name === selectedCategory)?.items.map((item) => ({
+        items={(categories.find((cat) => cat.name === selectedCategory)?.items || []).map((item) => ({
           id: item,
           text: item,
-        })) || []}
-        addItemFromCategory={(item) => addItemFromCategory(item)}
+        }))}
+        addItemFromCategory={addItemFromCategory}
       />
     </CategoryContainer>
   );
 };
+
+export default AvailableItemsList;
 
 // Styles avec Styled Components
 const CategoryContainer = styled.View`
@@ -46,4 +48,4 @@ const CategoryTitle = styled.Text`
   margin-bottom: 10px;
 `;
 
-export default AvailableItemsList;
+

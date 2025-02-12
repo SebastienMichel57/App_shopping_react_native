@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Header from "./components/Header";
@@ -112,7 +112,7 @@ export default function App() {
     { name: "Légumes", items: ["Carotte", "Courgette", "Tomate"] },
     { name: "Viandes", items: ["Poulet", "Boeuf", "Porc"] },
     { name: "Poissons", items: ["Saumon", "Cabillaud", "Sardine"] },
-    { name: "Surgelés", items: ["Pizza", "Frites", "Nuggets", "Glace"] },
+    { name: "Surgelés", items: ["Pizza", "Frites", "Nuggets", "Glace","Batonnets de poisson", "Légumes", "Steak haché"] },
     { name: "Boissons", items: ["Eau", "Jus d'orange", "Soda", "Limonade"] },
     { name: "Hygiène", items: ["Dentifrice", "Shampoing", "Gel douche", "Rasoir"] },
     { name: "Entretien", items: ["Lessive", "Liquide vaisselle", "Nettoyant ménager"] },
@@ -122,7 +122,7 @@ export default function App() {
 
   return (
     <AppContainer>
-      <Header />
+      <Header title="My Shopping List" />
       <InputForm input={input} setInput={setInput} addItem={addItem} />
       <CategoryList
         categories={categories}

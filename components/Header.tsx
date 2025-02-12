@@ -1,27 +1,32 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components/native";
 
 const HeaderContainer = styled.View`
-  background-color: #007bff;
   padding: 16px;
+  background-color: #6200ee;
+  align-items: center;
   margin-bottom: 16px;
-  margin-top: 25px;
-  border-radius: 8px;
+  margin-top: 30px;
+  border-radius: 5px;
 `;
 
 const HeaderText = styled.Text`
-  color: #fff;
-  font-size: 24px;
+  color: white;
+  font-size: 20px;
   font-weight: bold;
-  text-align: center;
-  padding: 15px;
 `;
 
-export default function Header() {
+interface HeaderProps {
+  title: string;
+}
+
+const Header: React.FC<HeaderProps> = ({ title }) => {
   return (
     <HeaderContainer>
-      <HeaderText>Ma Liste de Courses</HeaderText>
+      <HeaderText>{title}</HeaderText>
     </HeaderContainer>
   );
-}
+};
+
+export default Header;
 
