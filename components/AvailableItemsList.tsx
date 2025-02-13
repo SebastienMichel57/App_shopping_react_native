@@ -36,10 +36,12 @@ const CategoryContainer = styled.View`
   background-color: white;
   border-radius: 8px;
   padding: 10px;
-  min-height: 300px;
+  min-height: 350px;
   width: 100%;
   border: 1px solid #ccc;
   margin-bottom: 16px;
+  margin-top: 10px;
+  border-bottom-width: 2px;
 `;
 
 const CategoryTitle = styled.Text`

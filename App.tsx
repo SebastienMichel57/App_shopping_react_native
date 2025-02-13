@@ -135,8 +135,8 @@ export default function App() {
   ];
 
   return (
-    <AppContainer>
-      <Header title="My Shopping List" />
+    <AppContainer style={{ flex: 1, position: 'relative' }}>
+      <Header title="Mes courses facile" />
       <InputForm input={input} setInput={setInput} addItem={addItem} />
       <ToastMessage message={toastMessage} visible={toastVisible} />
       <CategoryList

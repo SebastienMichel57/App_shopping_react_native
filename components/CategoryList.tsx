@@ -44,6 +44,7 @@ const CategoryButton = styled.TouchableOpacity<{ selected: boolean }>`
   border-radius: 8px;
   margin-right: 10px;
   height: 50px;
+  border: 1px solid #ccc;
 `;
 
 const CategoryButtonText = styled.Text`
@@ -55,4 +56,5 @@ const CategoryButtonText = styled.Text`
 const ArticlesContainer = styled.View`
     margin-top: 10px;
     margin-bottom: 20px;
+    padding: 10px;
     `;
