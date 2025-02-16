@@ -121,17 +121,24 @@ export default function App() {
   };
 
   const categories = [
-    { name: "Produits laitiers", items: ["Lait", "Beurre", "Yaourt"] },
+    { name: "Crémerie", items: ["Lait", "Lait fermenté", "Beurre", "Yaourt", "Crème fraîche", "Fromage", "Oeufs", "Crème dessert", "Margarine", "Gruyère", "Camembert", "Parmesan", "Roquefort", "Chèvre"] },
     { name: "Fruits", items: ["Pomme", "Banane", "Orange", "Poire", "Cerise", "Raisins", "Citron", "Fraise", "Kiwi", "Ananas"] },
-    { name: "Légumes", items: ["Carotte", "Courgette", "Tomate"] },
-    { name: "Viandes", items: ["Poulet", "Boeuf", "Porc"] },
-    { name: "Poissons", items: ["Saumon", "Cabillaud", "Sardine"] },
-    { name: "Surgelés", items: ["Pizza", "Frites", "Nuggets", "Glace","Batonnets de poisson", "Légumes", "Steak haché"] },
-    { name: "Boissons", items: ["Eau", "Jus d'orange", "Soda", "Limonade"] },
-    { name: "Hygiène", items: ["Dentifrice", "Shampoing", "Gel douche", "Rasoir"] },
-    { name: "Entretien", items: ["Lessive", "Liquide vaisselle", "Nettoyant ménager"] },
+    { name: "Légumes", items: ["Carotte", "Courgette", "Tomate", "Salade", "Poivron", "Aubergine", "Concombre", "Champignon", "Haricot vert", "Pomme de terre", "Oignon", "Echalote", "Ail", "Radis", "Endive", "Céleri", "Brocoli", "Chou-fleur", "Potiron", "Courge", "Pois", "Petits pois", "Asperge", "Artichaut", "Betterave"] },
+    { name: "Viandes", items: ["Poulet", "Boeuf", "Porc", "Dinde", "Canard", "Agneau", "Veau", "Lapin", "Lardons", "Jambon", "Charcuterie"] },
+    { name: "Poissons", items: ["Saumon", "Cabillaud", "Sardine", "Bâtons de crabe", "Crevettes"] },
+    { name: "Surgelés", items: ["Pizza", "Frites", "Nuggets", "Glace","Poisson panés", "Légumes", "Steaks hachés"] },
+    { name: "Boissons", items: ["Eau", "Eau gazeuse", "Lait", "Jus de fruits", "Jus d'orange", "Sodas", "Sirop", "Bières", "Vin", "Apéritifs"] },
+    { name: "Hygiène", items: ["Dentifrice", "Brosse à dents", "Shampoing", "Gel douche", "Rasoir", "Mousse à raser", "Coton-tige", "Mouchoirs", "Papier toilette", "Serviettes hygiéniques", "Déodorant", "Cotons", "Lingettes", "Savon", "Crème hydratante", "Dissolvant", "Démaquillant"] },
+    { name: "Entretien", items: ["Lessive", "Liquide vaisselle", "Nettoyant ménager", "Eponge", "Papier absorbant", "Papier alu", "Sacs poubelle", "Désodorisant", "Produit WC", "Essuie-tout", "Pastilles lave-vaisselle", "Nettoyant vitres", "Nettoyant sol", "Nettoyant salle de bain",] },
     { name: "Boulangerie", items: ["Pain", "Croissant", "Pain au chocolat"] },
-    // Ajoutez d'autres catégories ici...
+    { name: "Epicerie Sucrée", items: ["Sucre", "Farine", "Chocolat", "Confiture", "Miel", "Pâte à tartiner", "Biscuits", "Bonbons", "Gâteaux", "Compote", "Céréales", "Barres chocolatées", "Pâte à gâteau", "Levure", "Sucre vanillé", "Pépites de chocolat", "Cacao", "Noix de coco", "Amandes", "Noisettes", "Pistaches", "Raisins secs"] },
+    { name: "Epicerie Salé", items: ["Riz", "Pâtes", "Sauce tomate", "Huile", "Vinaigre", "Sel", "Poivre", "Epices", "Moutarde", "Ketchup", "Mayonnaise", "Cornichons", "Olives"] },
+    { name: "Petit-déjeuner", items: ["Café", "Thé", "Chocolat en poudre", "Céréales", "Lait", "Jus de fruits", "Confiture", "Pâte à tartiner", "Pain", "Beurre", "Croissant", "Pain au chocolat"] },
+    { name: "Bébé", items: ["Couches", "Lait infantile", "Petits pots", "Biberons", "Tétines", "Lingettes"] },
+    { name: "Animaux", items: ["Croquettes", "Pâtée", "Litière", "Jouets", "Collier", "Laisse", "Gamelle", "Arbre à chat", "Panier"] },
+    { name: "Autres", items: ["Piles", "Ampoules", "Scotch", "Post-it", "Carnet", "Stylo", "Papier", "Enveloppes", "Timbres"] },
+    { name: "Conserves", items: ["Thon", "Sardines", "Maïs", "Petits pois", "Haricots verts", "Champignons", "Tomates pelées", "Purée de tomates", "Raviolis", "Pâté", "Confiture", "Compote", "Fruits au sirop", "Légumes", "Soupes", "Plats cuisinés", "Cornichons"] },
+    { name: "Pharmacie", items: ["Doliprane", "Ibuprofène", "Pansements", "Compresses", "Thermomètre", "Crème solaire", "Anti-moustiques", "Sérum physiologique", "Collyre", "Cotons", "Alcool", "Bétadine", "Arnica", "Homéopathie", "Huiles essentielles", "Vitamines", "Médicaments"] },
   ];
 
   return (
