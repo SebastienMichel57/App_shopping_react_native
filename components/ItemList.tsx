@@ -7,21 +7,6 @@ interface ItemListProps {
     addItemFromCategory?: (article: string) => Promise<void>;
   }
 
-const DeleteItemListButton = styled.TouchableOpacity`
-  background-color: #f44336;
-  padding: 15px;
-  border-radius: 8px;
-  margin-top: 10px;
-`;
-
-const DeleteItemListText = styled.Text`
-  color: #fff;
-  font-weight: bold;
-  font-size: 16px;
-  text-align: center;
-`;
-
-
 const ItemList: React.FC<ItemListProps> = ({ items, addItemFromCategory }) => {
   return (
     <FlatList
@@ -50,7 +35,8 @@ export default ItemList;
 const ItemContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  padding: 10px 5px;
+  align-items: center;
+  padding: 10px;
   background-color: #fff;
   border-bottom-width: 1px;
   border-bottom-color: #ccc;
@@ -66,13 +52,13 @@ const ItemText = styled.Text`
 
 const AddbuttonList = styled.TouchableOpacity`
   background-color: #4CAF50;
-  padding: 12px 15px;
+  padding: 12px;
   border-radius: 8px;
 `;
 
 const AddbuttonListText = styled.Text`
   color: white;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 16px;
 `;
 

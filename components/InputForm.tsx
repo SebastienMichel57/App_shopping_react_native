@@ -6,7 +6,7 @@ const InputContainer = styled.View`
   background-color: #fff;
   padding: 10px;
   border-radius: 8px;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   shadow-color: #000;
   shadow-opacity: 0.1;
   shadow-radius: 4px;
@@ -18,6 +18,7 @@ const InputContainer = styled.View`
 const TextInput = styled.TextInput`
   flex: 1;
   font-size: 16px;
+  font-weight: bold;
 `;
 
 const Button = styled.TouchableOpacity`
@@ -29,6 +30,7 @@ const Button = styled.TouchableOpacity`
 const ButtonText = styled.Text`
   color: #fff;
   font-size: 16px;
+  font-weight: bold;
 `;
 
 interface InputFormProps {

@@ -30,34 +30,31 @@ const RemoveItem: React.FC<RemoveItemProps> = ({ items, removeItemFromCategory }
 export default RemoveItem;
 
 const ItemContainer = styled.View`
+display: flex;
+align-items: center;
 flex-direction: row;
 justify-content: space-between;
-padding: 10px;
+padding: 8px;
 background-color: #fff;
 border-bottom-width: 1px;
 border-bottom-color: #ccc;
-border-radius: 5px;
-margin-bottom: 10px;
+border-radius: 10px;
+margin-bottom: 8px;
 `;
 
 const ItemText = styled.Text`
-font-size: 16px;
-padding: 18px 10px;
-font-weight: bold;
-
+  font-size: 16px;
+  font-weight: bold;
 `;
 
 const RemoveItemListButton = styled.TouchableOpacity`
   background-color: #f44336;
-  padding: 10px 15px;
+  padding: 12px;
   border-radius: 8px;
-  margin-top: 10px;
-  margin-bottom: 10px;
 `;
 
 const RemoveItemListText = styled.Text`
-  color: #fff;
+  color: white;
   font-weight: bold;
-  font-size: 18px;
-  text-align: center;
+  font-size: 16px;
 `;

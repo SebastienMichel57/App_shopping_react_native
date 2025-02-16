@@ -2,9 +2,9 @@
   "expo": {
     "name": "Mes Courses facile",
     "slug": "App_course_react_native",
-    "version": "1.1.0",
+    "version": "1.1.2",
     "orientation": "portrait",
-    "icon": "./assets/logo_app_course.svg",
+    "icon": "./assets/logo_app.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {

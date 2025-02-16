@@ -138,12 +138,12 @@ export default function App() {
     <AppContainer style={{ flex: 1, position: 'relative' }}>
       <Header title="Mes courses facile" />
       <InputForm input={input} setInput={setInput} addItem={addItem} />
-      <ToastMessage message={toastMessage} visible={toastVisible} />
       <CategoryList
         categories={categories}
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
       />
+      <ToastMessage message={toastMessage} visible={toastVisible} />
       {selectedCategory && (
         <AvailableItemsList 
         selectedCategory={selectedCategory}

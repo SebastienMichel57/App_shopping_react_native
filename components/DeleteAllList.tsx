@@ -26,13 +26,4 @@ const DeleteAllListText = styled.Text`
   text-align: center;
 `;
 
-const ToastMessage = styled.Text`
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 10px;
-    border-radius: 8px;
-    align-items: center;
-`;  
+  

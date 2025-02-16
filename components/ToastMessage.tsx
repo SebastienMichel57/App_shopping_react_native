@@ -20,14 +20,15 @@ export default ToastMessage;
 
 const ToastContainer = styled.View`
   position: absolute;
+  justify-content: center;
   background-color: rgba(0, 0, 0, 0.7);
   border-radius: 8px;
   align-items: center;
   padding: 5px;
-  top: 275px;
+  top: 278px;
   width: 260px;
-  margin-top: 10px;
-  margin-left: 80px;
+  left: 50%;
+  margin-left: -110px;
   z-index: 1;
 `;
 

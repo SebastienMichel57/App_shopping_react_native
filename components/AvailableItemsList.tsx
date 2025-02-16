@@ -33,15 +33,17 @@ export default AvailableItemsList;
 
 // Styles avec Styled Components
 const CategoryContainer = styled.View`
+  display: flex;
   background-color: white;
   border-radius: 8px;
   padding: 10px;
   min-height: 350px;
   width: 100%;
-  border: 1px solid #ccc;
-  margin-bottom: 16px;
+  border: 3px solid #ccc;
   margin-top: 10px;
-  border-bottom-width: 2px;
+  margin-bottom: 10px;
+  
+  
 `;
 
 const CategoryTitle = styled.Text`

@@ -40,7 +40,10 @@ export default CategoryList;
 
 const CategoryButton = styled.TouchableOpacity<{ selected: boolean }>`
   background-color: ${( { selected }: { selected: boolean } ) => (selected ? "#0B6010" : "#4CAF50")};
-  padding: 15px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 8px;
   margin-right: 10px;
   height: 50px;
