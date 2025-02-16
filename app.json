@@ -4,7 +4,7 @@
     "slug": "App_course_react_native",
     "version": "1.1.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo_app_course.svg",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
