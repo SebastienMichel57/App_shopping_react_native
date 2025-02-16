@@ -8,7 +8,7 @@
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/logo_app.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -18,12 +18,12 @@
     "android": {
       "package": "com.sebml.dev.appcoursereactnative",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/logo_app.png",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/logo_app.png"
     },
     "extra": {
       "eas": {
