@@ -14,3 +14,4 @@ The user can :
 
 [x] items categories
 
+[] add calculator ( calculate the price of all items )

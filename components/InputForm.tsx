@@ -46,6 +46,7 @@ export default function InputForm({ input, setInput, addItem }: InputFormProps) 
         placeholder="Ajouter un article"
         value={input}
         onChangeText={setInput}
+        maxLength={30}
       />
       <Button onPress={addItem}>
         <ButtonText>Ajouter</ButtonText>
