@@ -7,7 +7,7 @@ Ajoutez, supprimez, rechercher vos produits dans une categorie. Le tout avec une
 
 ## 📽️ Démo vidéo
 
-▶️ [Voir la démonstration sur YouTube](https://www.youtube.com/watch?v=vpyi2-8JJfI) *(vidéo non répertoriée)*  
+▶️ [Voir la démonstration sur YouTube](https://www.youtube.com/watch?v=vpiy2-8JJfI) *(vidéo non répertoriée)*  
 Dans cette vidéo, je présente les principales fonctionnalités de l’application, étape par étape.
 
 ---
