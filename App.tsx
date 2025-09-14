@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import styled from "styled-components/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Header from "./components/Header";
@@ -8,6 +8,7 @@ import ToastMessage from "./components/ToastMessage";
 import DeleteAllList from "./components/DeleteAllList";
 import RemoveItem from "./components/RemoveItem";
 import AvailableItemsList from "./components/AvailableItemsList";
+import { Alert } from "react-native";
 
 
 // Item interface
@@ -104,11 +105,32 @@ export default function App() {
     showToastMessage("Article supprimé !");
   };
 
-  // Vider la liste
-  const deleteAll = async () => {
+  // clean all items
+  const deleteAll = useCallback(async () => {
     await AsyncStorage.removeItem("shopping_list");
     setItems([]);
-  };
+    showToastMessage("Liste supprimée !");
+  }, [setItems]);
+
+  // Confirm before deleting all items
+  const confirmDeleteAll = useCallback(() => {
+  Alert.alert(
+    "Confirmer la suppression",
+    "Voulez-vous supprimer toute la liste ?",
+    [
+      { text: "Annuler", style: "cancel" },
+      {
+        text: "Supprimer",
+        style: "destructive",
+        onPress: async () => {
+          deleteAll();
+        },
+      },
+    ],
+    { cancelable: true }
+  );
+  }, [deleteAll]);
+
 
   // Show toast message
   const showToastMessage = (message: string) => {
@@ -159,7 +181,7 @@ export default function App() {
         />
       )}
       <RemoveItem items={items} removeItemFromCategory={removeItem} />
-      <DeleteAllList deleteAllList={deleteAll} />
+      <DeleteAllList deleteAllList={confirmDeleteAll} />
     </AppContainer>
   );
 }
