@@ -105,6 +105,23 @@ export default function App() {
     showToastMessage("Article supprimé !");
   };
 
+  // confirm before deleting an item
+  const confirmDeleteItem = useCallback((article: string) => {
+    Alert.alert(
+      "Confirmer la suppression",
+      `Voulez-vous supprimer l'article "${article}" ?`,
+      [
+        { text: "Annuler", style: "cancel" },
+        {
+          text: "Supprimer",
+          style: "destructive",
+          onPress: () => removeItem(article),
+        },
+      ],
+      { cancelable: true }
+    );
+  }, [removeItem]);
+
   // clean all items
   const deleteAll = useCallback(async () => {
     await AsyncStorage.removeItem("shopping_list");
@@ -180,7 +197,7 @@ export default function App() {
         addItemFromCategory={addItemFromCategory}
         />
       )}
-      <RemoveItem items={items} removeItemFromCategory={removeItem} />
+      <RemoveItem items={items} removeItemFromCategory={confirmDeleteItem} />
       <DeleteAllList deleteAllList={confirmDeleteAll} />
     </AppContainer>
   );
